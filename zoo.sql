@@ -11,45 +11,49 @@ WHERE area BETWEEN 200000 AND 250000;
 
 -- SELECT name-1
 
--- Name start with y-
+-- 1 - Name start with y-
 SELECT name FROM world
 WHERE name LIKE 'Y%';
 
--- Name end with -y
+-- 2 - Name end with -y
 SELECT name FROM world
 WHERE name LIKE '%Y';
 
--- Name include x 
+-- 3 - Name include x 
 SELECT name FROM world
 WHERE name LIKE '%x%';
 
--- Name end with -land 
+-- 4 - Name end with -land 
 SELECT name FROM world
 WHERE name LIKE '%land';
 
--- Name start with C end with -ia 
+-- 5 - Name start with C end with -ia 
 SELECT name FROM world
 WHERE name LIKE 'C%' AND name LIKE '%ia';
 
--- Name start with C end with -ia 
+-- 6 - Name start with C end with -ia 
 SELECT name FROM world
 WHERE name LIKE 'C%%ia';
 
 SELECT name FROM world
 WHERE name LIKE '%oo%';
 
--- Name has at least 3 'a'
+-- 7 - Name has at least 3 'a'
 SELECT name FROM world
 WHERE name LIKE '%a%a%a%';
 
+-- 8 
 SELECT name FROM world
 WHERE name LIKE '_t%'
 ORDER BY name;
 
 -- 9
+SELECT name FROM world
+WHERE name LIKE '%o__o%';
+
 -- 10 
 SELECT name FROM world
- WHERE name LIKE '____'
+WHERE name LIKE '____'
 
 -- 11
 SELECT name
@@ -61,12 +65,27 @@ SELECT name
 FROM world
 WHERE capital LIKE '%_City';
 
+SELECT name
+FROM world
+WHERE capital = concat(name, ' City');
+
 -- 13
+SELECT capital, name
+FROM world
+WHERE capital LIKE concat('%',name, '%');
 
 -- 14
+SELECT capital, name
+FROM world
+WHERE capital LIKE concat('%',name,'%')
+AND capital != name;
 
 -- 15
-
+SELECT name, 
+REPLACE(capital, name, '')
+FROM world
+WHERE capital LIKE concat('%',name,'%')
+AND capital != name;
 
 -- SELECT from World-2
 
